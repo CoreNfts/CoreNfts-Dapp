@@ -204,9 +204,7 @@ function App() {
         <a href={CONFIG.MARKETPLACE_LINK}>
           <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         </a>
-        <s.SpacerSmall />
-        <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
-          <s.SpacerLarge />
+        <s.SpacerLarge />
           <s.Container
             flex={2}
             jc={"center"}
@@ -392,12 +390,7 @@ function App() {
                 )}
               </>
             )}
-            <s.SpacerMedium />
-          </s.Container>
-          <s.SpacerLarge />
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-        </ResponsiveWrapper>
-        <s.SpacerMedium />
+            <s.SpacerLarge />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
           <s.TextDescription
             style={{
