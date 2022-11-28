@@ -230,7 +230,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.totalSupply} / {CONFIG.MAX_SUPPLY}
+              {data.Supply} / {CONFIG.MAX_SUPPLY}
             </s.TextTitle>
             <s.TextDescription
               style={{
@@ -255,7 +255,7 @@ function App() {
                   margin: "5px",
                 }}
               >
-                Roadmap
+                Market
               </StyledButton>
               <StyledButton
                 style={{
