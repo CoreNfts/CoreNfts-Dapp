@@ -7,7 +7,7 @@
     "ID": 1115
   },
   "NFT_NAME": "CoreNfts",
-  "SYMBOL": "Nfts",
+  "SYMBOL": "CoreNfts",
   "MAX_SUPPLY": 992,
   "WEI_COST": 4000000000000000000,
   "DISPLAY_COST": 4,
