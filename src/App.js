@@ -116,6 +116,7 @@ function App() {
     DISPLAY_COST: 0,
     GAS_LIMIT: 0,
     MARKETPLACE: "",
+    TWITTER_LINK: "",
     MARKETPLACE_LINK: "",
     SHOW_BACKGROUND: false,
   });
@@ -162,8 +163,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 50) {
-      newMintAmount = 50;
+    if (newMintAmount > 1) {
+      newMintAmount = 1;
     }
     setMintAmount(newMintAmount);
   };
@@ -201,7 +202,7 @@ function App() {
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
-        <a href={CONFIG.MARKETPLACE_LINK}>
+        <a href={CONFIG.TWITTER_LINK}>
           <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         </a>
         <s.SpacerSmall />
@@ -249,13 +250,13 @@ function App() {
             >
               <StyledButton
                 onClick={(e) => {
-                  window.open("/config/roadmap.pdf", "_blank");
+                  window.open(CONFIG.TWITTER_LINK, "_blank");
                 }}
                 style={{
                   margin: "5px",
                 }}
               >
-                Market
+                Twitter
               </StyledButton>
               <StyledButton
                 style={{
