@@ -101,6 +101,7 @@ function App() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
+  const [tokenId, setTokenId] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -167,6 +168,11 @@ function App() {
       newMintAmount = 1;
     }
     setMintAmount(newMintAmount);
+  };
+
+  const	handleNFT = () => {
+    let newTokenId = tokenId;
+    setTokenId(newTokenId);
   };
 
   const getData = () => {
@@ -368,6 +374,22 @@ function App() {
                       >
                         {mintAmount}
                       </s.TextDescription>
+            <ButtonGroup size="lg"
+              aria-label="First group"
+              name="amount"
+              disabled={claimingNft ? 1 : 0}
+              style={{ boxShadow: "1px 1px 5px #000000" }}
+              onClick={(e) => {
+                e.preventDefault();
+                  handleNft();
+              }}
+            >
+              <Button value="1">1</Button>
+              <Button value="2">2</Button>
+              <Button value="3">3</Button>
+              <Button value="4">4</Button>
+              <Button value="5">5</Button>
+            </ButtonGroup>
                       <s.SpacerMedium />
                       <StyledRoundButton
                         disabled={claimingNft ? 1 : 0}
