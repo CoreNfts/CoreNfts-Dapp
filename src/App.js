@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Button, ButtonGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
