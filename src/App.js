@@ -409,7 +409,7 @@ function App() {
         </ResponsiveWrapper>
         <s.SpacerMedium />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-          <form
+          <form>
             <lebel>tokenId:</lebel> </br>
             <input> type='text' maxlength="10" />
           </form>
