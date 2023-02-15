@@ -1,7 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, ButtonGroup } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Component } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
@@ -103,8 +100,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
-  const [mintAmount, setMintAmount] = useState(1);
-  const [tokenId, setTokenId] = useState(0);
+  const [mintAmount, setMintAmount] = useState([]);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -159,23 +155,18 @@ function App() {
 
   const decrementMintAmount = () => {
     let newMintAmount = mintAmount - 1;
-    if (newMintAmount < 1) {
-      newMintAmount = 1;
+    if (newMintAmount < 0) {
+      newMintAmount = 0;
     }
-    setMintAmount(newMintAmount);
+    setMintAmount.push(newMintAmount);
   };
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 1) {
-      newMintAmount = 1;
+    if (newMintAmount > 9) {
+      newMintAmount = 9;
     }
-    setMintAmount(newMintAmount);
-  };
-
-  const	handleNFT = () => {
-    let newTokenId = tokenId;
-    setTokenId(newTokenId);
+    setMintAmount.push(newMintAmount);
   };
 
   const getData = () => {
@@ -377,18 +368,6 @@ function App() {
                       >
                         {mintAmount}
                       </s.TextDescription>
-            <ButtonGroup size="lg"
-              aria-label="First group"
-              name="amount"
-              style={{ boxShadow: "1px 1px 5px #000000" }}
-              onClick={nftamount => this.handleNFT(nftamount, "value")}
-            >
-              <Button value="1">1</Button>
-              <Button value="2">2</Button>
-              <Button value="3">3</Button>
-              <Button value="4">4</Button>
-              <Button value="5">5</Button>
-            </ButtonGroup>
                       <s.SpacerMedium />
                       <StyledRoundButton
                         disabled={claimingNft ? 1 : 0}
