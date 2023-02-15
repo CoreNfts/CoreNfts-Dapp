@@ -100,7 +100,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
-  const [mintAmount, setMintAmount] = useState([0]);
+  const [mintAmount, setMintAmount] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -158,7 +158,7 @@ function App() {
     if (newMintAmount < 0) {
       newMintAmount = 0;
     }
-    setMintAmount.push(newMintAmount);
+    setMintAmount(newMintAmount);
   };
 
   const incrementMintAmount = () => {
@@ -166,7 +166,7 @@ function App() {
     if (newMintAmount > 9) {
       newMintAmount = 9;
     }
-    setMintAmount.push(newMintAmount);
+    setMintAmount(newMintAmount);
   };
 
   const getData = () => {
@@ -409,7 +409,6 @@ function App() {
         </ResponsiveWrapper>
         <s.SpacerMedium />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-        <!-- wp:search {"label":"Search","buttonText":"Search"} /-->
           <s.TextDescription
             style={{
               textAlign: "center",
