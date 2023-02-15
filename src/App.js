@@ -409,6 +409,7 @@ function App() {
         </ResponsiveWrapper>
         <s.SpacerMedium />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
+        <!-- wp:search {"label":"Search","buttonText":"Search"} /-->
           <s.TextDescription
             style={{
               textAlign: "center",
