@@ -380,12 +380,8 @@ function App() {
             <ButtonGroup size="lg"
               aria-label="First group"
               name="amount"
-              disabled={claimingNft ? 1 : 0}
               style={{ boxShadow: "1px 1px 5px #000000" }}
-              onClick={(e) => {
-                e.preventDefault();
-                  handleNft();
-              }}
+              onClick={nftamount => this.handleNFT(nftamount, "value")}
             >
               <Button value="1">1</Button>
               <Button value="2">2</Button>
