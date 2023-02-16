@@ -332,11 +332,6 @@ function App() {
             >
               {data.Stakers}
             </s.TextTitle>
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  stakers
-                </s.TextDescription>
             <s.TextDescription
               style={{
                 textAlign: "center",
