@@ -2,7 +2,7 @@
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 // log
-import { fetchData } from "../data/dataActions";
+import { fetchData } from "../data/stakeActions";
 
 const connectRequest = () => {
   return {
@@ -31,10 +31,10 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-export const connect = () => {
+export const connect2 = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const abiResponse = await fetch("/config/abi.json", {
+    const abiResponse = await fetch("/config/stakeAbi.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -63,7 +63,7 @@ export const connect = () => {
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(
             abi,
-            CONFIG.CONTRACT_ADDRESS
+            CONFIG.STAKE_ADDRESS
           );
           dispatch(
             connectSuccess({
