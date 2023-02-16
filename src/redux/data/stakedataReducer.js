@@ -6,7 +6,7 @@ const initialState = {
   errorMsg: "",
 };
 
-const dataReducer = (state = initialState, action) => {
+const stakedataReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CHECK_DATA_REQUEST":
       return {
