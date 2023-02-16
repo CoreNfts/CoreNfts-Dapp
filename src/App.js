@@ -98,7 +98,6 @@ export const StyledLink = styled.a`
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  const blockchain2 = useSelector((state) => stake.blockchain2);
   const data2 = useSelector((state) => state.data2);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`key in your tokenId.`);
@@ -158,12 +157,12 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`staking processing...`);
     setClaimingNft(true);
-    blockchain2.smartContract.methods
+    blockchain.smartContract.methods
       .stake(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
-        from: blockchain2.account,
+        from: blockchain.account,
       })
       .once("error", (err) => {
         console.log(err);
@@ -176,7 +175,7 @@ function App() {
           `staking successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain2.account));
+        dispatch(fetchData(blockchain.account));
       });
   };
 
@@ -186,7 +185,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`unstaking processing...`);
     setClaimingNft(true);
-    blockchain2.smartContract.methods
+    blockchain.smartContract.methods
       .withdraw(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
@@ -204,7 +203,7 @@ function App() {
           `unstaking successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain2.account));
+        dispatch(fetchData(blockchain.account));
       });
   };
 
@@ -214,12 +213,12 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`claiming processing...`);
     setClaimingNft(true);
-    blockchain2.smartContract.methods
+    blockchain.smartContract.methods
       .claimRewards()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
-        from: blockchain2.account,
+        from: blockchain.account,
       })
       .once("error", (err) => {
         console.log(err);
@@ -232,7 +231,7 @@ function App() {
           `claiming successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain2.account));
+        dispatch(fetchData(blockchain.account));
       });
   };
 
@@ -269,8 +268,8 @@ function App() {
   };
 
   const getData = () => {
-    if (blockchain2.account !== "" && blockchain2.smartContract !== null) {
-      dispatch(fetchData(blockchain2.account));
+    if (blockchain.account !== "" && blockchain2.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
     }
   };
 
@@ -291,7 +290,7 @@ function App() {
 
   useEffect(() => {
     getData();
-  }, [blockchain2.account]);
+  }, [blockchain.account]);
 
   return (
     <s.Screen>
