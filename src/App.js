@@ -162,10 +162,31 @@ function App() {
   };
 
   const incrementMintAmount = () => {
+    let newMintAmount = mintAmount + 1;
+    if (newMintAmount > 1000) {
+      newMintAmount = 1000;
+    }
+    setMintAmount(newMintAmount);
+  };
+
+  const decrementMintAmount50 = () => {
+    let newMintAmount = mintAmount - 50;
+    if (newMintAmount < 1) {
+      newMintAmount = 1;
+    }
+    setMintAmount(newMintAmount);
+  };
+
+  const incrementMintAmount50 = () => {
     let newMintAmount = mintAmount + 50;
     if (newMintAmount > 1000) {
       newMintAmount = 1000;
     }
+    setMintAmount(newMintAmount);
+  };
+
+  const refresh0 = () => {
+    let newMintAmount = 0;
     setMintAmount(newMintAmount);
   };
 
@@ -348,6 +369,46 @@ function App() {
                       {feedback}
                     </s.TextDescription>
                     <s.SpacerMedium />
+                      <s.TextDescription
+                        style={{
+                          textAlign: "center",
+                          color: "var(--accent-text)",
+                        }}
+                      >
+                        {mintAmount}
+                      </s.TextDescription>
+                      <s.SpacerSmall />
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                      <StyledRoundButton
+                        style={{ lineHeight: 0.4 }}
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          decrementMintAmount50();
+                        }}
+                      >
+                        -50
+                      </StyledRoundButton>
+                      <s.SpacerMedium />
+                      <s.TextDescription
+                        style={{
+                          textAlign: "center",
+                          color: "var(--accent-text)",
+                        }}
+                      >
+                        tokenId
+                      </s.TextDescription>
+                      <s.SpacerMedium />
+                      <StyledRoundButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          incrementMintAmount50();
+                        }}
+                      >
+                        +50
+                      </StyledRoundButton>
+                    </s.Container>
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledRoundButton
                         style={{ lineHeight: 0.4 }}
@@ -357,7 +418,7 @@ function App() {
                           decrementMintAmount();
                         }}
                       >
-                        -
+                        -1
                       </StyledRoundButton>
                       <s.SpacerMedium />
                       <s.TextDescription
@@ -366,7 +427,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {mintAmount}
+                        tokenId
                       </s.TextDescription>
                       <s.SpacerMedium />
                       <StyledRoundButton
@@ -376,9 +437,18 @@ function App() {
                           incrementMintAmount();
                         }}
                       >
-                        +
+                        +1
                       </StyledRoundButton>
                     </s.Container>
+                      <StyledRoundButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          refresh0();
+                        }}
+                      >
+                        0
+                      </StyledRoundButton>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
