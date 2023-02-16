@@ -1,11 +1,11 @@
 import { applyMiddleware, compose, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import blockchainReducer from "./blockchain/blockchainReducer";
-import dataReducer from "./data/dataReducer";
+import stakeReducer from "./blockchain/stakeReducer";
+import dataReducer from "./data/stakedataReducer";
 
 const rootReducer = combineReducers({
-  blockchain: blockchainReducer,
-  data: dataReducer,
+  blockchain: stakeReducer,
+  data: stakedataReducer,
 });
 
 const middleware = [thunk];
@@ -15,6 +15,6 @@ const configureStore = () => {
   return createStore(rootReducer, composeEnhancers);
 };
 
-const store = configureStore();
+const stakestore = configureStore();
 
-export default store;
+export default stakestore;
