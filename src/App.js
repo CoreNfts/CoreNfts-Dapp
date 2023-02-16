@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
+import { connect } from "./redux/Blockchain/stakeActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
@@ -100,9 +101,10 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
-  const [mintAmount, setMintAmount] = useState(0);
+  const [tokenId, setTokenId] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
+    STAKE_ADDRESS: "",
     SCAN_LINK: "",
     NETWORK: {
       NAME: "",
@@ -121,14 +123,14 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
-  const claimNFTs = () => {
+  const approveStake = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
       .mint(blockchain.account, mintAmount)
@@ -146,43 +148,139 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          `approval successful ✔️.`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
 
-  const decrementMintAmount = () => {
-    let newMintAmount = mintAmount - 1;
-    if (newMintAmount < 1) {
-      newMintAmount = 1;
-    }
-    setMintAmount(newMintAmount);
+  const stakeNft = () => {
+    let cost = CONFIG.WEI_COST;
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost * mintAmount);
+    let totalGasLimit = String(gasLimit * mintAmount);
+    console.log("Cost: ", totalCostWei);
+    console.log("Gas limit: ", totalGasLimit);
+    setFeedback(`staking processing...`);
+    setClaimingNft(true);
+    blockchain.smartContract.methods
+      .mint(blockchain.account, mintAmount)
+      .send({
+        gasLimit: String(totalGasLimit),
+        to: CONFIG.STAKE_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback(
+          `staking successful ✔️.`
+        );
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
   };
 
-  const incrementMintAmount = () => {
-    let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 1000) {
-      newMintAmount = 1000;
-    }
-    setMintAmount(newMintAmount);
+  const unStakeNft = () => {
+    let cost = CONFIG.WEI_COST;
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost * mintAmount);
+    let totalGasLimit = String(gasLimit * mintAmount);
+    console.log("Cost: ", totalCostWei);
+    console.log("Gas limit: ", totalGasLimit);
+    setFeedback(`unstaking processing...`);
+    setClaimingNft(true);
+    blockchain.smartContract.methods
+      .mint(blockchain.account, mintAmount)
+      .send({
+        gasLimit: String(totalGasLimit),
+        to: CONFIG.STAKE_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback(
+          `unstaking successful ✔️.`
+        );
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
   };
 
-  const decrementMintAmount50 = () => {
-    let newMintAmount = mintAmount - 50;
-    if (newMintAmount < 1) {
-      newMintAmount = 1;
-    }
-    setMintAmount(newMintAmount);
+  const claimReward = () => {
+    let cost = CONFIG.WEI_COST;
+    let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost * mintAmount);
+    let totalGasLimit = String(gasLimit * mintAmount);
+    console.log("Cost: ", totalCostWei);
+    console.log("Gas limit: ", totalGasLimit);
+    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setClaimingNft(true);
+    blockchain.smartContract.methods
+      .mint(blockchain.account, mintAmount)
+      .send({
+        gasLimit: String(totalGasLimit),
+        to: CONFIG.STAKE_ADDRESS,
+        from: blockchain.account,
+        value: totalCostWei,
+      })
+      .once("error", (err) => {
+        console.log(err);
+        setFeedback("Sorry, something went wrong please try again later.");
+        setClaimingNft(false);
+      })
+      .then((receipt) => {
+        console.log(receipt);
+        setFeedback(
+          `claiming successful ✔️.`
+        );
+        setClaimingNft(false);
+        dispatch(fetchData(blockchain.account));
+      });
   };
 
-  const incrementMintAmount50 = () => {
-    let newMintAmount = mintAmount + 50;
-    if (newMintAmount > 1000) {
-      newMintAmount = 1000;
+  const decrementTokenId = () => {
+    let newTokenId = tokenId - 1;
+    if (newTokenId < 1) {
+      newTokenId = 1;
     }
-    setMintAmount(newMintAmount);
+    setTokenId(newTokenId);
+  };
+
+  const incrementTokenId = () => {
+    let newTokenId = tokenId + 1;
+    if (newTokenId > 1000) {
+      newTokenId = 1000;
+    }
+    setTokenId(newTokenId);
+  };
+
+  const decrementTokenId50 = () => {
+    let newTokenId = tokenId - 50;
+    if (newTokenId < 1) {
+      newTokenId = 1;
+    }
+    setTokenId(newTokenId);
+  };
+
+  const incrementTokenId50 = () => {
+    let newTokenId = tokenId + 50;
+    if (newTokenId > 1000) {
+      newTokenId = 1000;
+    }
+    setTokenId(newTokenId);
   };
 
   const getData = () => {
@@ -370,7 +468,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {mintAmount}
+                        {tokenId}
                       </s.TextDescription>
                       <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
@@ -379,7 +477,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          decrementMintAmount50();
+                          decrementTokenId50();
                         }}
                       >
                         -50
@@ -398,7 +496,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          incrementMintAmount50();
+                          incrementTokenId50();
                         }}
                       >
                         +50
@@ -411,7 +509,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          decrementMintAmount();
+                          decrementTokenId();
                         }}
                       >
                         -1
@@ -430,23 +528,56 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          incrementMintAmount();
+                          incrementTokenId();
                         }}
                       >
                         +1
                       </StyledRoundButton>
                     </s.Container>
                     <s.SpacerSmall />
+                      <StyledButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          approveStake();
+                          getData();
+                        }}
+                      >
+                        APPROVE STAKE
+                      </StyledButton>
+                      <s.SpacerSmall />
+                     <StyledButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          stakeNft();
+                          getData();
+                        }}
+                      >
+                        STAKE
+                      </StyledButton>
+                      <s.SpacerSmall />
+                     <StyledButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          unStakeNft();
+                          getData();
+                        }}
+                      >
+                        UNSTAKE
+                      </StyledButton>
+                    <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          claimNFTs();
+                          claimReward();
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "BUSY" : "CLAIM REWARD"}
                       </StyledButton>
                     </s.Container>
                   </>
