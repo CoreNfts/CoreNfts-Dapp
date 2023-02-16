@@ -98,7 +98,7 @@ export const StyledLink = styled.a`
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  const data2 = useSelector((state) => state.data2);
+  const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`key in your tokenId.`);
   const [tokenId, setTokenId] = useState(0);
@@ -268,7 +268,7 @@ function App() {
   };
 
   const getData = () => {
-    if (blockchain.account !== "" && blockchain2.smartContract !== null) {
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
   };
