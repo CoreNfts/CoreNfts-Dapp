@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { connect2 } from "./redux/blockchain/stakeActions";
-import { fetchData } from "./redux/data/dataActions";
+import { fetchData } from "./redux/data/stakedataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 
@@ -329,8 +329,13 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Supply} / {CONFIG.MAX_SUPPLY}
+              {data.Stakers}
             </s.TextTitle>
+                <s.TextDescription
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  stakers
+                </s.TextDescription>
             <s.TextDescription
               style={{
                 textAlign: "center",
@@ -341,34 +346,8 @@ function App() {
                 {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
               </StyledLink>
             </s.TextDescription>
-            <span
-              style={{
-                textAlign: "center",
-              }}
-            >
-              <StyledButton
-                onClick={(e) => {
-                  window.open(CONFIG.TWITTER_LINK, "_blank");
-                }}
-                style={{
-                  margin: "5px",
-                }}
-              >
-                Twitter
-              </StyledButton>
-              <StyledButton
-                style={{
-                  margin: "5px",
-                }}
-                onClick={(e) => {
-                  window.open(CONFIG.MARKETPLACE_LINK, "_blank");
-                }}
-              >
-                {CONFIG.MARKETPLACE}
-              </StyledButton>
-            </span>
             <s.SpacerSmall />
-            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+            {Number(data.Stakers) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -390,14 +369,13 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  STAKE EMPEROR NFT
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  to earn EMPEROR coin 
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
