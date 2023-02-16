@@ -14,7 +14,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-ReactDOM.render(
+ReactDOM2.render(
   <Provider stakestore={stakestore}>
     <App />
   </Provider>,
