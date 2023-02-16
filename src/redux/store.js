@@ -7,7 +7,7 @@ import stakedataReducer from "./data/stakedataReducer";
 
 const rootReducer = combineReducers({
   blockchain: blockchainReducer,
-  Blockchain: stakeReducer,
+  blockchain2: stakeReducer,
   data: dataReducer,
   data2: stakedataReducer,
 });
