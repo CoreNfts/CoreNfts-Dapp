@@ -1,6 +1,6 @@
 {
   "CONTRACT_ADDRESS": "0x662115d016c8e9df72846536ce539bc7b5bc4349",
-  "STAKE_ADDRESS": "",
+  "STAKE_ADDRESS": "0x8fd038804166faaf8136b9d8e1c3f5dd6ba34d9c",
   "SCAN_LINK": "https://scan.test.btcs.network/address/0x662115d016c8e9df72846536ce539bc7b5bc4349#code",
   "NETWORK": {
     "NAME": "CORE",
