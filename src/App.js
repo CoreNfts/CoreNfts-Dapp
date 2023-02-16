@@ -329,7 +329,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Stakers}
+              {data.Supply}
             </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
