@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import "./styles/reset.css";
 
 ReactDOM.render(
-  <Provider stakestore={stakestore}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")
