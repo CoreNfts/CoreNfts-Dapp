@@ -329,7 +329,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data2.Stakers}
+              {data.Stakers}
             </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -347,7 +347,7 @@ function App() {
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
-            {Number(data2.Stakers) >= CONFIG.MAX_SUPPLY ? (
+            {Number(data.Stakers) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
