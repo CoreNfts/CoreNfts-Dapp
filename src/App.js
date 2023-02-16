@@ -126,11 +126,12 @@ function App() {
   const approveStake = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
+    let stakingContract = String(CONFIG.STAKE_ADDRESS);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .approve(CONFIG.STAKE_ADDRESS, tokenId)
+      .approve(stakingContract, tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -253,8 +254,8 @@ function App() {
 
   const decrementTokenId50 = () => {
     let newTokenId = tokenId - 50;
-    if (newTokenId < 1) {
-      newTokenId = 1;
+    if (newTokenId < 0) {
+      newTokenId = 0;
     }
     setTokenId(newTokenId);
   };
@@ -394,6 +395,7 @@ function App() {
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(connect());
+                        dispatch(connect2());
                         getData();
                       }}
                     >
