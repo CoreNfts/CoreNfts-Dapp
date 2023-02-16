@@ -130,7 +130,7 @@ function App() {
     setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(CONFIG.STAKE_ADDRESS, tokenId)
+      .approve(CONFIG.STAKE_ADDRESS, tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -158,7 +158,7 @@ function App() {
     setFeedback(`staking processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(tokenId)
+      .stake(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
@@ -186,7 +186,7 @@ function App() {
     setFeedback(`unstaking processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(tokenId)
+      .withdraw(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
@@ -214,7 +214,7 @@ function App() {
     setFeedback(`claiming processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account)
+      .claimRewards()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
