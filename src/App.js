@@ -185,11 +185,6 @@ function App() {
     setMintAmount(newMintAmount);
   };
 
-  const refresh0 = () => {
-    let newMintAmount = 0;
-    setMintAmount(newMintAmount);
-  };
-
   const getData = () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
@@ -441,16 +436,6 @@ function App() {
                         +1
                       </StyledRoundButton>
                     </s.Container>
-                    <s.SpacerSmall />
-                      <StyledRoundButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          refresh0();
-                        }}
-                      >
-                        0
-                      </StyledRoundButton>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
