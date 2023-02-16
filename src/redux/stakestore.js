@@ -1,7 +1,7 @@
 import { applyMiddleware, compose, createStore, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import stakeReducer from "./blockchain/stakeReducer";
-import dataReducer from "./data/stakedataReducer";
+import stakedataReducer from "./data/stakedataReducer";
 
 const rootReducer = combineReducers({
   blockchain: stakeReducer,
