@@ -98,7 +98,8 @@ export const StyledLink = styled.a`
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
-  const data = useSelector((state) => state.data);
+  const blockchain2 = useSelector((state) => stake.blockchain2);
+  const data2 = useSelector((state) => state.data2);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`key in your tokenId.`);
   const [tokenId, setTokenId] = useState(0);
@@ -157,12 +158,12 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`staking processing...`);
     setClaimingNft(true);
-    blockchain.smartContract.methods
+    blockchain2.smartContract.methods
       .stake(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
-        from: blockchain.account,
+        from: blockchain2.account,
       })
       .once("error", (err) => {
         console.log(err);
@@ -175,7 +176,7 @@ function App() {
           `staking successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
+        dispatch(fetchData(blockchain2.account));
       });
   };
 
@@ -185,7 +186,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`unstaking processing...`);
     setClaimingNft(true);
-    blockchain.smartContract.methods
+    blockchain2.smartContract.methods
       .withdraw(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
@@ -203,7 +204,7 @@ function App() {
           `unstaking successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
+        dispatch(fetchData(blockchain2.account));
       });
   };
 
@@ -213,12 +214,12 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`claiming processing...`);
     setClaimingNft(true);
-    blockchain.smartContract.methods
+    blockchain2.smartContract.methods
       .claimRewards()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
-        from: blockchain.account,
+        from: blockchain2.account,
       })
       .once("error", (err) => {
         console.log(err);
@@ -231,7 +232,7 @@ function App() {
           `claiming successful ✔️.`
         );
         setClaimingNft(false);
-        dispatch(fetchData(blockchain.account));
+        dispatch(fetchData(blockchain2.account));
       });
   };
 
@@ -268,8 +269,8 @@ function App() {
   };
 
   const getData = () => {
-    if (blockchain.account !== "" && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account));
+    if (blockchain2.account !== "" && blockchain2.smartContract !== null) {
+      dispatch(fetchData(blockchain2.account));
     }
   };
 
@@ -290,7 +291,7 @@ function App() {
 
   useEffect(() => {
     getData();
-  }, [blockchain.account]);
+  }, [blockchain2.account]);
 
   return (
     <s.Screen>
@@ -329,7 +330,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Stakers}
+              {data2.Stakers}
             </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -347,7 +348,7 @@ function App() {
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
-            {Number(data.Stakers) >= CONFIG.MAX_SUPPLY ? (
+            {Number(data2.Stakers) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
