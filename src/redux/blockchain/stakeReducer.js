@@ -6,7 +6,7 @@ const initialState = {
   errorMsg: "",
 };
 
-const blockchainReducer = (state = initialState, action) => {
+const stakeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CONNECTION_REQUEST":
       return {
@@ -37,4 +37,4 @@ const blockchainReducer = (state = initialState, action) => {
   }
 };
 
-export default blockchainReducer;
+export default stakeReducer;
