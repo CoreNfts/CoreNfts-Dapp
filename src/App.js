@@ -396,7 +396,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        tokenId
+                        ID
                       </s.TextDescription>
                       <s.SpacerMedium />
                       <StyledRoundButton
@@ -409,6 +409,7 @@ function App() {
                         +50
                       </StyledRoundButton>
                     </s.Container>
+                    <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledRoundButton
                         style={{ lineHeight: 0.4 }}
@@ -427,7 +428,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        tokenId
+                        ID
                       </s.TextDescription>
                       <s.SpacerMedium />
                       <StyledRoundButton
@@ -440,6 +441,7 @@ function App() {
                         +1
                       </StyledRoundButton>
                     </s.Container>
+                    <s.SpacerSmall />
                       <StyledRoundButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
