@@ -31,7 +31,7 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-export const connect2 = () => {
+export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
     const abiResponse = await fetch("/config/stakeAbi.json", {
