@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
-import { connect } from "./redux/Blockchain/stakeActions";
+import { connect2 } from "./redux/Blockchain/stakeActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
@@ -416,6 +416,7 @@ function App() {
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(connect());
+                        dispatch(connect2());
                         getData();
                       }}
                     >
