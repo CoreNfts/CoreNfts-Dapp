@@ -124,21 +124,17 @@ function App() {
   });
 
   const approveStake = () => {
-    let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
+    let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account, mintAmount)
+      .mint(CONFIG.STAKE_ADDRESS, tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
-        value: totalCostWei,
       })
       .once("error", (err) => {
         console.log(err);
@@ -156,21 +152,17 @@ function App() {
   };
 
   const stakeNft = () => {
-    let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
+    let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`staking processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account, mintAmount)
+      .mint(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
         from: blockchain.account,
-        value: totalCostWei,
       })
       .once("error", (err) => {
         console.log(err);
@@ -188,21 +180,17 @@ function App() {
   };
 
   const unStakeNft = () => {
-    let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
+    let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`unstaking processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account, mintAmount)
+      .mint(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
         from: blockchain.account,
-        value: totalCostWei,
       })
       .once("error", (err) => {
         console.log(err);
@@ -220,21 +208,17 @@ function App() {
   };
 
   const claimReward = () => {
-    let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
+    let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    setFeedback(`claiming processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(blockchain.account, mintAmount)
+      .mint(blockchain.account)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.STAKE_ADDRESS,
         from: blockchain.account,
-        value: totalCostWei,
       })
       .once("error", (err) => {
         console.log(err);
