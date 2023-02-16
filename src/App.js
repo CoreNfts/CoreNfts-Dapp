@@ -130,7 +130,7 @@ function App() {
     setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .approve(CONFIG.STAKE_ADDRESS, tokenId)
+      .approve(0x8fd038804166faaf8136b9d8e1c3f5dd6ba34d9c, tokenId)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
