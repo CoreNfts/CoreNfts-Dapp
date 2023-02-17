@@ -391,7 +391,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         e.preventDefault();
                         dispatch(connect());
-                        approveStake();
+                        dispatch(approveStake());
                         getData();
                       }}
                     >
