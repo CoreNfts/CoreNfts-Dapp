@@ -34,13 +34,13 @@ const updateAccountRequest = (payload) => {
 export const connect2 = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const stakeAbiResponse = await fetch("/config/stakeAbi.json", {
+    const abiResponse = await fetch("/config/stakeAbi.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     });
-    const stakeAbi = await stakeAbiResponse.json();
+    const abi = await stakeAbiResponse.json();
     const configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export const connect2 = () => {
         });
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(
-            stakeAbi,
+            abi,
             CONFIG.STAKE_ADDRESS
           );
           dispatch(
