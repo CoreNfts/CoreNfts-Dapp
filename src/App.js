@@ -99,7 +99,6 @@ function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
-  const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`key in your tokenId.`);
   const [tokenId, setTokenId] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
@@ -388,10 +387,8 @@ function App() {
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
-                        disabled={claimingNft ? 1 : 0}
                         e.preventDefault();
                         dispatch(connect());
-                        dispatch(approveStake());
                         getData();
                       }}
                     >
