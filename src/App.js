@@ -203,7 +203,7 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`reward processing...`);
+    setFeedback(`claim processing...`);
     blockchain.smartContract.methods
       .claimRewards()
       .send({
@@ -490,6 +490,7 @@ function App() {
                       <StyledButton
                         onClick={(e) => {
                           approveStake();
+                          connect2();
                           getData();
                         }}
                       >
@@ -533,7 +534,7 @@ function App() {
                           getData();
                         }}
                       >
-                        REWARD
+                        CLAIM
                       </StyledButton>
                     </s.Container>
                   </>
