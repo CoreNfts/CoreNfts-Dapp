@@ -481,6 +481,7 @@ function App() {
                       </StyledRoundButton>
                     </s.Container>
                     <s.SpacerSmall />
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         onClick={(e) => {
                           approveStake();
@@ -498,6 +499,7 @@ function App() {
                       >
                         ENABLE
                       </StyledButton>
+                    </s.Container>
                       <s.SpacerSmall />
                      <StyledButton
                        style={{ lineHeight: 0.4 }}
@@ -526,7 +528,7 @@ function App() {
                           getData();
                         }}
                       >
-                        CLAIM REWARD
+                        REWARD
                       </StyledButton>
                     </s.Container>
                   </>
