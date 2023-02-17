@@ -389,6 +389,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
+                        connect();
                         dispatch(connect2());
                         getData();
                       }}
@@ -497,7 +498,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(connect());
+                          approveStake();
                           getData();
                         }}
                       >
