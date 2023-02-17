@@ -494,6 +494,7 @@ function App() {
                     </s.Container>
                     <s.SpacerSmall />
                       <StyledButton
+                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
                           approveStake();
@@ -543,7 +544,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "CLAIM REWARD"}
+                        CLAIM
                       </StyledButton>
                     </s.Container>
                   </>
