@@ -129,7 +129,6 @@ function App() {
     let stakingContract = String(CONFIG.STAKE_ADDRESS);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
-    setClaimingNft(true);
     blockchain.smartContract.methods
       .setApprovalForAll(stakingContract, true)
       .send({
@@ -140,14 +139,12 @@ function App() {
       .once("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
           `approval successful ✔️`
         );
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
@@ -494,9 +491,7 @@ function App() {
                     </s.Container>
                     <s.SpacerSmall />
                       <StyledButton
-                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
                           approveStake();
                           getData();
                         }}
