@@ -389,7 +389,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        dispatch(connect2());
+                        dispatch(connect());
                         getData();
                       }}
                     >
@@ -507,7 +507,7 @@ function App() {
                      <StyledButton
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(connect());
+                          dispatch(connect2());
                           getData();
                         }}
                       >
