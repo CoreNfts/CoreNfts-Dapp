@@ -498,7 +498,6 @@ function App() {
                         onClick={(e) => {
                           e.preventDefault();
                           approveStake();
-                          connect();
                           getData();
                         }}
                       >
@@ -506,11 +505,20 @@ function App() {
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(connect());
+                          getData();
+                        }}
+                      >
+                        CONNECT STAKE
+                      </StyledButton>
+                      <s.SpacerSmall />
+                     <StyledButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
                           stakeNft();
-                          getData();
                         }}
                       >
                         STAKE
