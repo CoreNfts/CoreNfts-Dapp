@@ -500,6 +500,7 @@ function App() {
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
+                       style={{ lineHeight: 0.4 }}
                         onClick={(e) => {
                           stakeNft();
                         }}
@@ -508,6 +509,7 @@ function App() {
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
+                       style={{ lineHeight: 0.4 }}
                         onClick={(e) => {
                           unStakeNft();
                           getData();
@@ -518,6 +520,7 @@ function App() {
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
+                        style={{ lineHeight: 0.4 }}
                         onClick={(e) => {
                           claimReward();
                           getData();
