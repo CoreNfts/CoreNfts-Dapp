@@ -544,7 +544,7 @@ function App() {
                           getData();
                         }}
                       >
-                        CLAIM
+                        {claimingNft ? "BUSY" : "CLAIM REWARD"}
                       </StyledButton>
                     </s.Container>
                   </>
