@@ -332,7 +332,7 @@ function App() {
               }}
             >
               <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
+                {truncate(CONFIG.MARKETPLACE, 15)}
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
@@ -490,7 +490,6 @@ function App() {
                       <StyledButton
                         onClick={(e) => {
                           approveStake();
-                          connect2();
                           getData();
                         }}
                       >
