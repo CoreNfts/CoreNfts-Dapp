@@ -131,7 +131,7 @@ function App() {
     setFeedback(`approval processing...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .approve(stakingContract, tokenId)
+      .setApprovalForAll(stakingContract, true)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
