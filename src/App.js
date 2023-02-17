@@ -325,6 +325,7 @@ function App() {
                 >
                   stakers
                 </s.TextDescription>
+                <s.SpacerSmall />
             <s.TextDescription
               style={{
                 textAlign: "center",
