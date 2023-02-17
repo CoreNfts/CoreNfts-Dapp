@@ -13,7 +13,7 @@
   "WEI_COST": 4000000000000000000,
   "DISPLAY_COST": 4,
   "GAS_LIMIT": 285000,
-  "MARKETPLACE": "Market",
+  "MARKETPLACE": "CONTRACT",
   "TWITTER_LINK": "https://emperorsclub.netlify.app",
   "MARKETPLACE_LINK": "https://youngparrotnft.com",
   "SHOW_BACKGROUND": true
