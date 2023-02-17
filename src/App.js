@@ -154,7 +154,6 @@ function App() {
     let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`staking processing...`);
-    setClaimingNft(true);
     blockchain.smartContract.methods
       .stake(tokenId)
       .send({
@@ -165,14 +164,12 @@ function App() {
       .once("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
           `staking successful ✔️`
         );
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
@@ -182,7 +179,6 @@ function App() {
     let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`unstaking processing...`);
-    setClaimingNft(true);
     blockchain.smartContract.methods
       .withdraw(tokenId)
       .send({
@@ -193,14 +189,12 @@ function App() {
       .once("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
           `unstaking successful ✔️`
         );
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
@@ -210,7 +204,6 @@ function App() {
     let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`claiming processing...`);
-    setClaimingNft(true);
     blockchain.smartContract.methods
       .claimRewards()
       .send({
@@ -221,14 +214,12 @@ function App() {
       .once("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
           `claiming successful ✔️`
         );
-        setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
       });
   };
@@ -496,23 +487,20 @@ function App() {
                           getData();
                         }}
                       >
-                        APPROVE STAKE
+                        APPROVE
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
                         onClick={(e) => {
-                          e.preventDefault();
                           dispatch(connect2());
                           getData();
                         }}
                       >
-                        CONNECT STAKE
+                        ENABLE
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
-                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
                           stakeNft();
                         }}
                       >
@@ -520,9 +508,7 @@ function App() {
                       </StyledButton>
                       <s.SpacerSmall />
                      <StyledButton
-                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
                           unStakeNft();
                           getData();
                         }}
@@ -532,14 +518,12 @@ function App() {
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
-                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
                           claimReward();
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "CLAIM REWARD"}
+                        CLAIM REWARD
                       </StyledButton>
                     </s.Container>
                   </>
