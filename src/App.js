@@ -494,7 +494,6 @@ function App() {
                     </s.Container>
                     <s.SpacerSmall />
                       <StyledButton
-                        disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
                           approveStake();
