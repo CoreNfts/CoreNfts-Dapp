@@ -389,7 +389,6 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        connect();
                         dispatch(connect2());
                         getData();
                       }}
@@ -499,6 +498,7 @@ function App() {
                         onClick={(e) => {
                           e.preventDefault();
                           approveStake();
+                          connect();
                           getData();
                         }}
                       >
