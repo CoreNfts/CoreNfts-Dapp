@@ -32,7 +32,7 @@ const updateAccountRequest = (payload) => {
 };
 
 export const connect2 = () => {
-  return async (dispatch2) => {
+  return async (dispatch) => {
     dispatch(connectRequest());
     const stakeAbiResponse = await fetch("/config/stakeAbi.json", {
       headers: {
