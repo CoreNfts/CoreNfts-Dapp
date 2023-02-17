@@ -40,7 +40,7 @@ export const connect2 = () => {
         Accept: "application/json",
       },
     });
-    const abi = await stakeAbiResponse.json();
+    const abi = await abiResponse.json();
     const configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",
