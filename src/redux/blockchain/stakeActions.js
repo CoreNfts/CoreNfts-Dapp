@@ -93,7 +93,7 @@ export const connect2 = () => {
   };
 };
 
-export const connect2 = () => {
+export const connect3 = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
     const abiResponse = await fetch("/config/abi.json", {
