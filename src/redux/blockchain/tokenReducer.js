@@ -6,7 +6,7 @@ const initialState = {
   errorMsg: "",
 };
 
-const stakeReducer = (state = initialState, action) => {
+const tokenReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CONNECTION_REQUEST":
       return {
