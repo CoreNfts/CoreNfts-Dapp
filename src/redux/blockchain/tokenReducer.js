@@ -37,4 +37,4 @@ const stakeReducer = (state = initialState, action) => {
   }
 };
 
-export default stakeReducer;
+export default tokenReducer;
