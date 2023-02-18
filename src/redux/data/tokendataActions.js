@@ -1,5 +1,5 @@
 // log
-import stakestore from "../stakestore";
+import tokenstore from "../tokenstore";
 
 const fetchDataRequest = () => {
   return {
