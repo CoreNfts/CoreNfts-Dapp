@@ -6,7 +6,7 @@ const initialState = {
   errorMsg: "",
 };
 
-const stakedataReducer = (state = initialState, action) => {
+const tokendataReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CHECK_DATA_REQUEST":
       return {
@@ -36,4 +36,4 @@ const stakedataReducer = (state = initialState, action) => {
   }
 };
 
-export default stakedataReducer;
+export default tokendataReducer;
