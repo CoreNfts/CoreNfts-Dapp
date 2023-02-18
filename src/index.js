@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
-import stakestore from "./redux/stakestore";
+import tokenstore from "./redux/tokenstore";
 import { Provider } from "react-redux";
 import "./styles/reset.css";
 
