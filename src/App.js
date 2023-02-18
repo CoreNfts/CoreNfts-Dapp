@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
-import { connect2 } from "./redux/blockchain/stakeActions";
-import { fetchData } from "./redux/data/stakedataActions";
+import { connect2 } from "./redux/blockchain/tokenActions";
+import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 
@@ -104,7 +104,7 @@ function App() {
   const [tokenId, setTokenId] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
-    STAKE_ADDRESS: "",
+    TOKEN_ADDRESS: "",
     SCAN_LINK: "",
     NETWORK: {
       NAME: "",
@@ -126,14 +126,14 @@ function App() {
   const approveStake = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
-    let stakingContract = String(CONFIG.STAKE_ADDRESS);
+    let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
       .setApprovalForAll(stakingContract, true)
       .send({
         gasLimit: String(totalGasLimit),
-        to: CONFIG.CONTRACT_ADDRESS,
+        to: CONFIG.TOKEN_ADDRESS,
         from: blockchain.account,
       })
       .once("error", (err) => {
@@ -158,7 +158,7 @@ function App() {
       .stake(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
-        to: CONFIG.STAKE_ADDRESS,
+        to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
       })
       .once("error", (err) => {
@@ -183,7 +183,7 @@ function App() {
       .withdraw(tokenId)
       .send({
         gasLimit: String(totalGasLimit),
-        to: CONFIG.STAKE_ADDRESS,
+        to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
       })
       .once("error", (err) => {
@@ -208,7 +208,7 @@ function App() {
       .claimRewards()
       .send({
         gasLimit: String(totalGasLimit),
-        to: CONFIG.STAKE_ADDRESS,
+        to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
       })
       .once("error", (err) => {
@@ -383,7 +383,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        dispatch(connect());
+                        dispatch(connect2());
                         getData();
                       }}
                     >
@@ -499,7 +499,7 @@ function App() {
                       <s.SpacerSmall />
                      <StyledButton
                         onClick={(e) => {
-                          dispatch(connect2());
+                          dispatch(connect());
                           getData();
                         }}
                       >
