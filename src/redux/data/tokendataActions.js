@@ -25,7 +25,7 @@ export const fetchData2 = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      let Stakers = await store
+      let Stakers = await tokenstore
         .getState()
         .blockchain.smartContract.methods.Stakers()
         .call();
