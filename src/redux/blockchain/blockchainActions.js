@@ -34,8 +34,7 @@ const updateAccountRequest = (payload) => {
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const abiResponse = await fetch("/config/abi.json", ||
-    const abiResponse = await fetch("/config/tokenAbi.json", {
+    const abiResponse = await fetch("/config/abi.json", "/config/tokenAbi.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -92,6 +91,7 @@ export const connect = () => {
       dispatch(connectFailed("Install Metamask."));
     }
   };
+};
 };
 
 export const updateAccount = (account) => {
