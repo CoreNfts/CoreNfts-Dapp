@@ -21,7 +21,7 @@ const fetchDataFailed = (payload) => {
   };
 };
 
-export const fetchData2 = () => {
+export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
