@@ -319,7 +319,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Stakers}
+              {data.Supply}
             </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -338,7 +338,7 @@ function App() {
               </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
-            {Number(data.Stakers) >= CONFIG.MAX_SUPPLY ? (
+            {Number(data.Supply) >= CONFIG.MAX_SUPPLY ? (
               <>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -384,6 +384,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
+                        dispatch(connect2());
                         dispatch(connect());
                         getData();
                       }}
