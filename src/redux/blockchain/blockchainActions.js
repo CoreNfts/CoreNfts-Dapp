@@ -3,6 +3,7 @@ import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 // log
 import { fetchData } from "../data/dataActions";
+import { fetchData2 } from "../data/tokendataActions";
 
 const connectRequest = () => {
   return {
@@ -96,5 +97,6 @@ export const updateAccount = (account) => {
   return async (dispatch) => {
     dispatch(updateAccountRequest({ account: account }));
     dispatch(fetchData(account));
+    dispatch(fetchData2(account));
   };
 };
