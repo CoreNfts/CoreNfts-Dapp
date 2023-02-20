@@ -95,6 +95,6 @@ export const connect2 = () => {
 export const updateAccount = (account) => {
   return async (dispatch) => {
     dispatch(updateAccountRequest({ account: account }));
-    dispatch(fetchData(account));
+    dispatch(fetchData2(account));
   };
 };
