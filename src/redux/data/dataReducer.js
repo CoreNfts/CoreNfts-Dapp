@@ -1,6 +1,6 @@
 const initialState = {
   loading: false,
-  Stakers: 0,
+  Supply: 0,
   cost: 0,
   error: false,
   errorMsg: "",
@@ -19,7 +19,7 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        Stakers: action.payload.Stakers,
+        Supply: action.payload.Supply,
         // cost: action.payload.cost,
         error: false,
         errorMsg: "",
