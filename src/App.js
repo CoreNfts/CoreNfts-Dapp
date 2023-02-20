@@ -386,7 +386,6 @@ function App() {
                         e.preventDefault();
                         dispatch(connect2());
                         getData();
-                      }
                       .then() => {
                         approveStake();
                       }}
