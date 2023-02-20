@@ -63,7 +63,7 @@ export const connect = () => {
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(
             abi,
-            "CONFIG.CONTRACT_ADDRESS
+            CONFIG.CONTRACT_ADDRESS
           );
           dispatch(
             connectSuccess({
