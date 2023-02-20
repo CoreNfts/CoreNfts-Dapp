@@ -92,7 +92,6 @@ export const connect = () => {
     }
   };
 };
-};
 
 export const updateAccount = (account) => {
   return async (dispatch) => {
