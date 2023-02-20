@@ -385,8 +385,10 @@ function App() {
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(connect2());
-                        dispatch(connect());
                         getData();
+                      }
+                      .then() => {
+                        approveStake();
                       }}
                     >
                       CONNECT
