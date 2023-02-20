@@ -3,7 +3,7 @@ import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 // log
 import { fetchData2 } from "../data/tokendataActions";
-import { approveStake } from "../src/App" ;
+import { approveStake } from "/src/App" ;
 
 const connectRequest = () => {
   return {
