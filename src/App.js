@@ -96,32 +96,6 @@ export const StyledLink = styled.a`
   text-decoration: none;
 `;
 
- export const approveStake = () => {
-    let gasLimit = CONFIG.GAS_LIMIT;
-    let totalGasLimit = String(gasLimit);
-    let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
-    console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`approval processing...`);
-    blockchain.smartContract.methods
-      .setApprovalForAll(stakingContract, true)
-      .send({
-        gasLimit: String(totalGasLimit),
-        to: CONFIG.TOKEN_ADDRESS,
-        from: blockchain.account,
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        setFeedback(
-          `approval successful ✔️`
-        );
-        dispatch(fetchData(blockchain.account));
-      });
-  };
-
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
@@ -173,6 +147,7 @@ function App() {
           `approval successful ✔️`
         );
         dispatch(fetchData(blockchain.account));
+        dispatch(connect());
       });
   };
 
