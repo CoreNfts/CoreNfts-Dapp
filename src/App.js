@@ -404,7 +404,7 @@ function App() {
                           {blockchain.errorMsg}
                         </s.TextDescription>
                       </>
-                    ) : null}
+                    ) : "null}", "null}" 
                   </s.Container>
                 ) : (
                   <>
