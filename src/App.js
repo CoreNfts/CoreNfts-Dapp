@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { connect2 } from "./redux/blockchain/tokenActions";
 import { fetchData } from "./redux/data/dataActions";
+import { fetchData2 } from "./redux/data/tokendataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 
