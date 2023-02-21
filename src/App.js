@@ -102,7 +102,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`key in your tokenId.`);
-  const [tokenId, setTokenId] = useState(0);
+  const [tokenId, setTokenId] = useState(10);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -152,16 +152,20 @@ function App() {
   };
 
   const stakeNft = () => {
+    let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
+    let totalCostWei = String(cost);
     let totalGasLimit = String(gasLimit);
+    console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`staking processing...`);
+    setFeedback(`Processing...`);
     blockchain.smartContract.methods
-      .stake(tokenId)
+      .Buy(blockchain.account)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
         from: blockchain.account,
+        value: totalCostWei,
       })
       .once("error", (err) => {
         console.log(err);
@@ -170,7 +174,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `staking successful ✔️`
+          `successful✔️`
         );
         dispatch(fetchData(blockchain.account));
       });
@@ -320,12 +324,12 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Supply}
+              {data.Sales}
             </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  stakers
+                  Buyers
                 </s.TextDescription>
                 <s.SpacerSmall />
             <s.TextDescription
@@ -361,13 +365,13 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  STAKE EMPEROR NFT
+                  EMPEROR PRE-SALES
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  to earn EMPEROR coin 
+                  10 Core for 120 Emperor coin
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -385,7 +389,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        dispatch(connect2());
+                        dispatch(connect());
                         getData();
                       }}
                     >
@@ -424,119 +428,15 @@ function App() {
                       >
                         {tokenId}
                       </s.TextDescription>
-                      <s.SpacerSmall />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledRoundButton
-                        style={{ lineHeight: 0.4 }}
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          decrementTokenId50();
-                        }}
-                      >
-                        -50
-                      </StyledRoundButton>
-                      <s.SpacerMedium />
-                      <s.TextDescription
-                        style={{
-                          textAlign: "center",
-                          color: "var(--accent-text)",
-                        }}
-                      >
-                        ID
-                      </s.TextDescription>
-                      <s.SpacerMedium />
-                      <StyledRoundButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          incrementTokenId50();
-                        }}
-                      >
-                        +50
-                      </StyledRoundButton>
-                    </s.Container>
-                    <s.SpacerSmall />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledRoundButton
-                        style={{ lineHeight: 0.4 }}
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          decrementTokenId();
-                        }}
-                      >
-                        -1
-                      </StyledRoundButton>
-                      <s.SpacerMedium />
-                      <s.TextDescription
-                        style={{
-                          textAlign: "center",
-                          color: "var(--accent-text)",
-                        }}
-                      >
-                        ID
-                      </s.TextDescription>
-                      <s.SpacerMedium />
-                      <StyledRoundButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          incrementTokenId();
-                        }}
-                      >
-                        +1
-                      </StyledRoundButton>
-                    </s.Container>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
-                        onClick={(e) => {
-                          approveStake();
-                          getData();
-                        }}
-                      >
-                        APPROVE
-                      </StyledButton>
-                      <s.SpacerSmall />
-                     <StyledButton
-                        onClick={(e) => {
-                          dispatch(connect());
-                          getData();
-                        }}
-                      >
-                        ENABLE
-                      </StyledButton>
-                    </s.Container>
-                      <s.SpacerSmall />
-                     <StyledButton
-                       style={{ lineHeight: 0.4 }}
                         onClick={(e) => {
                           stakeNft();
-                        }}
-                      >
-                        STAKE
-                      </StyledButton>
-                      <s.SpacerSmall />
-                     <StyledButton
-                       style={{ lineHeight: 0.4 }}
-                        onClick={(e) => {
-                          unStakeNft();
                           getData();
                         }}
                       >
-                        UNSTAKE
-                      </StyledButton>
-                    <s.SpacerSmall />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledButton
-                        style={{ lineHeight: 0.4 }}
-                        onClick={(e) => {
-                          claimReward();
-                          getData();
-                        }}
-                      >
-                        CLAIM
+                        BUY
                       </StyledButton>
                     </s.Container>
                   </>
