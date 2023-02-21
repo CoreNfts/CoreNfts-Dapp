@@ -160,7 +160,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Processing...`);
     blockchain.smartContract.methods
-      .Buy(blockchain.account)
+      .BuySales(blockchain.account)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -174,7 +174,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `successful✔️`
+          `successful ✔️`
         );
         dispatch(fetchData(blockchain.account));
       });
