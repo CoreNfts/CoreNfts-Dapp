@@ -1,17 +1,17 @@
 {
-  "CONTRACT_ADDRESS": "0x57287045F9b6094ADcc16a0a4F98c9860a539065",
+  "CONTRACT_ADDRESS": "0xeF93F0aFAF4e804E0Ef3A9F3e0Be3050820fad61",
   "TOKEN_ADDRESS": "0x662115d016c8e9df72846536ce539bc7b5bc4349",
-  "SCAN_LINK": "https://scan.test.btcs.network/address/0x662115d016c8e9df72846536ce539bc7b5bc4349#code",
+  "SCAN_LINK": "https://scan.coredao.org/address/0xef93f0afaf4e804e0ef3a9f3e0be3050820fad61#transactions",
   "NETWORK": {
     "NAME": "CORE",
     "SYMBOL": "CORE",
-    "ID": 1115
+    "ID": 1116
   },
   "NFT_NAME": "CoreNfts",
   "SYMBOL": "CoreNfts",
-  "MAX_SUPPLY": 992,
-  "WEI_COST": 4000000000000000000,
-  "DISPLAY_COST": 4,
+  "MAX_SUPPLY": 1000000,
+  "WEI_COST": 10000000000000000000,
+  "DISPLAY_COST": 10,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "CONTRACT",
   "TWITTER_LINK": "https://emperorsclub.netlify.app",
