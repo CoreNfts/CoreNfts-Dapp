@@ -102,7 +102,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
-  const [tokenId, setTokenId] = useState(120);
+  const [tokenId, setTokenId] = useState(50);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
