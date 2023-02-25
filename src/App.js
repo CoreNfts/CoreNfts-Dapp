@@ -371,7 +371,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  120 Emperor for 10 Core
+                  50 Emperor for 5 Core
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
