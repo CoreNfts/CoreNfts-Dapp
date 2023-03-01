@@ -104,7 +104,7 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
   const [tokenId, setTokenId] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [approveAmount, setApproveAmount] = useState(10000000000000000000000);
+  const [approveAmount, setApproveAmount] = useState(100);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -443,7 +443,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {amount}
+                        {tokenId}
                       </s.TextDescription>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
