@@ -445,7 +445,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {amount}
+                        {tokenId}
                       </s.TextDescription>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
