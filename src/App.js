@@ -406,7 +406,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        dispatch(connect2());
+                        dispatch(connect());
                         getData();
                       }}
                     >
