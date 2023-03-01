@@ -104,7 +104,7 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
   const [tokenId, setTokenId] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [approveAmount, setApproveAmount] = useState(1000000000000000000);
+  const [approveAmount, setApproveAmount] = useState(10000000000000000000000);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -157,10 +157,11 @@ function App() {
   const stakeEmperor = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
+    let stakeAmount = value(amount);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Stake Processing...`);
     blockchain.smartContract.methods
-      .stake(amount)
+      .stake(stakeAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
