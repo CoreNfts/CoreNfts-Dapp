@@ -280,8 +280,8 @@ function App() {
     setTokenId(newTokenId);
 
     let newAmount = amount + 50000000000000000000;
-    if (newAmount > 900000000000000000000) {
-      newAmount = 900000000000000000000;
+    if (newAmount > 1000000000000000000000) {
+      newAmount = 1000000000000000000000;
     }
     setAmount(newAmount);
   };
@@ -445,7 +445,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {tokenId}
+                        {amount}
                       </s.TextDescription>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
