@@ -104,7 +104,7 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
   const [tokenId, setTokenId] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [approveAmount, setApproveAmount] = useState(50);
+  const [approveAmount, setApproveAmount] = useState(10000000000000000000000);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -120,7 +120,6 @@ function App() {
     WEI_COST: 0,
     DISPLAY_COST: 0,
     GAS_LIMIT: 0,
-    APV_AMOUNT: 0,
     MARKETPLACE: "",
     TWITTER_LINK: "",
     MARKETPLACE_LINK: "",
@@ -131,12 +130,10 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
-    let permit = CONFIG.APV_AMOUNT;
-    let approvAmount = String(permit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
-      .approve(stakingContract, approvAmount)
+      .approve(stakingContract, approveAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.TOKEN_ADDRESS,
