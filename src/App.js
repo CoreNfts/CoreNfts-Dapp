@@ -406,7 +406,7 @@ function App() {
                     <StyledButton
                       onClick={(e) => {
                         e.preventDefault();
-                        dispatch(connect());
+                        dispatch(connect2());
                         getData();
                       }}
                     >
@@ -443,7 +443,7 @@ function App() {
                           color: "var(--accent-text)",
                         }}
                       >
-                        {tokenId}
+                        {amount}
                       </s.TextDescription>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
