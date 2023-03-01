@@ -120,6 +120,7 @@ function App() {
     WEI_COST: 0,
     DISPLAY_COST: 0,
     GAS_LIMIT: 0,
+    APV_AMOUNT: 0,
     MARKETPLACE: "",
     TWITTER_LINK: "",
     MARKETPLACE_LINK: "",
@@ -130,10 +131,11 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
+    let approvAmount = String(CONFIG.APV_AMOUNT);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
-      .approve(stakingContract, approveAmount)
+      .approve(stakingContract, approvAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.TOKEN_ADDRESS,
