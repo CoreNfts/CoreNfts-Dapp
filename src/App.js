@@ -131,7 +131,8 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
-    let approvAmount = String(CONFIG.APV_AMOUNT);
+    let permit = CONFIG.APV_AMOUNT;
+    let approvAmount = String(permit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
