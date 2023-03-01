@@ -102,7 +102,8 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
-  const [tokenId, setTokenId] = useState(50);
+  const [tokenId, setTokenId] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -128,10 +129,11 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
+    let approveAmount = String(10000000000000000000000);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
-      .setApprovalForAll(stakingContract, true)
+      .approve(stakingContract, approveAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.TOKEN_ADDRESS,
@@ -151,16 +153,16 @@ function App() {
       });
   };
 
-  const stakeNft = () => {
+  const stakeEmperor = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost);
     let totalGasLimit = String(gasLimit);
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Processing...`);
+    setFeedback(`Stake Processing...`);
     blockchain.smartContract.methods
-      .BuySales(blockchain.account)
+      .stake(amount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -174,19 +176,19 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `successful ✔️`
+          `Stake successful ✔️`
         );
         dispatch(fetchData(blockchain.account));
       });
   };
 
-  const unStakeNft = () => {
+  const unStakeEmperor = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`unstaking processing...`);
     blockchain.smartContract.methods
-      .withdraw(tokenId)
+      .unstake()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -211,7 +213,7 @@ function App() {
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`claim processing...`);
     blockchain.smartContract.methods
-      .claimRewards()
+      .claim()
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -236,14 +238,26 @@ function App() {
       newTokenId = 1;
     }
     setTokenId(newTokenId);
+
+    let newAmount = amount - 1000000000000000000;
+    if (newAmount < 1000000000000000000) {
+      newAmount = 1000000000000000000;
+    }
+    setAmount(newAmount);
   };
 
   const incrementTokenId = () => {
     let newTokenId = tokenId + 1;
-    if (newTokenId > 1000) {
-      newTokenId = 1000;
+    if (newTokenId > 900) {
+      newTokenId = 900;
     }
     setTokenId(newTokenId);
+
+    let newAmount = amount + 1000000000000000000;
+    if (newAmount > 900000000000000000000) {
+      newAmount = 900000000000000000000;
+    }
+    setAmount(newAmount);
   };
 
   const decrementTokenId50 = () => {
@@ -252,14 +266,26 @@ function App() {
       newTokenId = 0;
     }
     setTokenId(newTokenId);
+
+    let newAmount = amount - 50000000000000000000;
+    if (newAmount < 0) {
+      newAmount = 0;
+    }
+    setAmount(newAmount);
   };
 
   const incrementTokenId50 = () => {
     let newTokenId = tokenId + 50;
-    if (newTokenId > 1000) {
-      newTokenId = 1000;
+    if (newTokenId > 900) {
+      newTokenId = 900;
     }
     setTokenId(newTokenId);
+
+    let newAmount = amount + 50000000000000000000;
+    if (newAmount > 900000000000000000000) {
+      newAmount = 900000000000000000000;
+    }
+    setAmount(newAmount);
   };
 
   const getData = () => {
@@ -324,13 +350,8 @@ function App() {
                 color: "var(--accent-text)",
               }}
             >
-              {data.Sales}
+              {data.Sale}
             </s.TextTitle>
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  Buyers
-                </s.TextDescription>
                 <s.SpacerSmall />
             <s.TextDescription
               style={{
@@ -365,13 +386,13 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  EMPEROR PRE-SALES
+                  EMPEROR POOL STAKING
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  50 Emperor for 5 Core
+                  stake and earn more emperor
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -430,15 +451,85 @@ function App() {
                       </s.TextDescription>
                     <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                      <StyledRoundButton
+                        style={{ lineHeight: 0.4 }}
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          decrementTokenId50();
+                        }}
+                      >
+                        50-
+                      </StyledRoundButton>
+                      <s.SpacerMedium />
+                      <StyledRoundButton
+                        style={{ lineHeight: 0.4 }}
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          decrementTokenId();
+                        }}
+                      >
+                        1-
+                      </StyledRoundButton>
+                      <s.SpacerMedium />
+                      <StyledRoundButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          incrementTokenId();
+                        }}
+                      >
+                        +1
+                      </StyledRoundButton>
+                      <s.SpacerMedium />
+                      <StyledRoundButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          incrementTokenId50();
+                        }}
+                      >
+                        +50
+                      </StyledRoundButton>
+                    </s.Container>
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         onClick={(e) => {
-                          stakeNft();
+                          stakeEmperor();
                           getData();
                         }}
                       >
-                        BUY
+                        STAKE
                       </StyledButton>
-                    </s.Container>
+                      <s.SpacerSmall />
+                      <StyledButton
+                        onClick={(e) => {
+                          unStakeEmperor();
+                          getData();
+                        }}
+                      >
+                        UNSTAKEALL
+                      </StyledButton>
+                      </s.Container>
+                      <s.SpacerSmall />
+                      <StyledButton
+                        onClick={(e) => {
+                          claimReward();
+                          getData();
+                        }}
+                      >
+                        CLAIM
+                      </StyledButton>
+                      <s.SpacerSmall />
+                      <StyledButton
+                        onClick={(e) => {
+                          approveStake();
+                          getData();
+                        }}
+                      >
+                        APPROVE
+                      </StyledButton>
                   </>
                 )}
               </>
