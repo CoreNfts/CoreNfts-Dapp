@@ -104,7 +104,7 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
   const [tokenId, setTokenId] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [approveAmount, setApproveAmount] = useState(100);
+  const [approveAmount, setApproveAmount] = useState(1000000000000000000);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
