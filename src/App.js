@@ -157,11 +157,10 @@ function App() {
   const stakeEmperor = () => {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
-    let stakeAmount = value(amount);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Stake Processing...`);
     blockchain.smartContract.methods
-      .stake(stakeAmount)
+      .stake(amount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
