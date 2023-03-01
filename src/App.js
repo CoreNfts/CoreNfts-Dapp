@@ -104,6 +104,7 @@ function App() {
   const [feedback, setFeedback] = useState(`Click buy to proceed.`);
   const [tokenId, setTokenId] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [approveAmount] = useState(10000000000000000000000);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     TOKEN_ADDRESS: "",
@@ -129,7 +130,6 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalGasLimit = String(gasLimit);
     let stakingContract = String(CONFIG.CONTRACT_ADDRESS);
-    let approveAmount = String(10000000000000000000000);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`approval processing...`);
     blockchain.smartContract.methods
@@ -493,6 +493,7 @@ function App() {
                         +50
                       </StyledRoundButton>
                     </s.Container>
+                    <s.SpacerSmall />
                     <s.Container ai={"center"} jc={"center"} fd={"row"}>
                       <StyledButton
                         onClick={(e) => {
