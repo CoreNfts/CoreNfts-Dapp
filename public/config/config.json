@@ -1,7 +1,7 @@
 {
   "CONTRACT_ADDRESS": "0x52795162bDEAC019F72346062F050fE95e8163cf",
   "TOKEN_ADDRESS": "0x8AFB52De791A19873c3097195Ef04D48ED93fE14",
-  "SCAN_LINK": "https://scan.coredao.org/address/0xef93f0afaf4e804e0ef3a9f3e0be3050820fad61#transactions",
+  "SCAN_LINK": "https://scan.coredao.org/address/0x52795162bdeac019f72346062f050fe95e8163cf",
   "NETWORK": {
     "NAME": "CORE",
     "SYMBOL": "CORE",
